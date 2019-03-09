@@ -550,7 +550,7 @@ ifeq ($(BLD_ARCH),osx106_x86)
 LIBS := $(LIBS) -framework CoreServices -framework IOKit
 endif
 
-LIBS := $(LIBS) -lyarn -lkrb5
+LIBS := $(LIBS) -lyarn -lkrb5 -lssl
 
 ##########################################################################
 #

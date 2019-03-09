@@ -12,7 +12,10 @@ subdir = src/backend/tcop
 top_builddir = ../../..
 include $(top_builddir)/src/Makefile.global
 
-override CPPFLAGS := -I$(top_srcdir)/src/backend/resourcemanager/include $(CPPFLAGS)
+override CPPFLAGS += -I/opt/dependency/package/include/openssl
+override CPPFLAGS += -I$(top_srcdir)/src/backend/resourcemanager/include $(CPPFLAGS)
+
+LIBS := -lssl -lcrypto
 
 OBJS= dest.o fastpath.o postgres.o pquery.o utility.o
 
@@ -21,3 +24,11 @@ override CPPFLAGS += -DWIN32_STACK_RLIMIT=$(WIN32_STACK_RLIMIT)
 endif
 
 include $(top_srcdir)/src/backend/common.mk
+
+UNAME = $(shell uname)
+ifeq (Darwin, $(UNAME))
+  INCLUDES := $(INCLUDES) -I/opt/dependency/package/include/openssl
+  LIBS := $(LIBS) -L/opt/dependency/package/lib
+# INCLUDES := $(INCLUDES) -I/usr/local/opt/openssl/include
+# LIBS := $(LIBS) -L/usr/local/opt/openssl/lib
+endif

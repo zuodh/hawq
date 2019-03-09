@@ -46,8 +46,8 @@ LIBS     := $$($(APR_CFG) --link-ld --libs) $(LIBS)
 # workaround for 'brew link openssl --force' error on MacOS 10.12
 UNAME = $(shell uname)
 ifeq (Darwin, $(UNAME))
-	INCLUDES := $(INCLUDES) -I/usr/local/opt/openssl/include
-	LIBS := $(LIBS) -L/usr/local/opt/openssl/lib
+	INCLUDES := $(INCLUDES) -I/usr/local/Cellar/openssl/1.0.2q/include/openssl
+	LIBS := $(LIBS) -L/usr/local/Cellar/openssl/1.0.2q/lib
 endif
 
 sol10_sparc_32_CPPFLAGS = -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64
